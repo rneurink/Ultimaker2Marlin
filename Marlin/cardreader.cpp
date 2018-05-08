@@ -223,13 +223,15 @@ void CardReader::openLogFile(const char* name)
   openFile(name, false);
 }
 
-void CardReader::openFile(const char* name,bool read)
+void CardReader::openFile(const char* name,bool read, bool selectedForPrinting)
 {
   if(!cardOK)
     return;
   file.close();
   sdprinting = false;
   pause = false;
+
+  if (selectedForPrinting) sdprinting = true;
 
   SdFile myDir;
   curDir=&root;
@@ -390,7 +392,14 @@ void CardReader::getStatus()
 {
   if(cardOK){
     SERIAL_PROTOCOLPGM(MSG_SD_PRINTING_BYTE);
-    SERIAL_PROTOCOL(sdpos);
+    if (sdprinting)
+    {
+      SERIAL_PROTOCOL(sdpos);
+    }
+    else
+    {
+      SERIAL_PROTOCOL(filesize);
+    }
     SERIAL_PROTOCOLPGM("/");
     SERIAL_PROTOCOLLN(filesize);
   }

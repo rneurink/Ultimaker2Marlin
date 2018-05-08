@@ -30,7 +30,7 @@ public:
   //this is to delay autostart and hence the initialisaiton of the sd card to some seconds after the normal init, so the device is available quick after a reset
 
   void checkautostart(bool x);
-  void openFile(const char* name,bool read);
+  void openFile(const char* name,bool read, bool selectedForPrinting = false);
   void openLogFile(const char* name);
   void removeFile(const char* name);
   void closefile();

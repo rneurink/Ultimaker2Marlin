@@ -3,6 +3,7 @@
 #include "Configuration.h"
 #ifdef ENABLE_ULTILCD2
 #include "Marlin.h"
+#include "language.h"
 #include "cardreader.h"
 #include "temperature.h"
 #include "lifetime_stats.h"
@@ -66,6 +67,7 @@ static void abortPrint()
     {
         // we're not printing any more
         card.sdprinting = false;
+        SERIAL_PROTOCOLLNPGM(MSG_FILE_PRINTED);
     }
     //If we where paused, make sure we abort that pause. Else strange things happen: https://github.com/Ultimaker/Ultimaker2Marlin/issues/32
     card.pause = false;
@@ -380,7 +382,7 @@ void lcd_menu_print_select()
             {
                 //Start print
                 active_extruder = 0;
-                card.openFile(card.filename, true);
+                card.openFile(card.filename, true, true);
                 if (card.isFileOpen() && !is_command_queued())
                 {
                     if (led_mode == LED_MODE_WHILE_PRINTING || led_mode == LED_MODE_BLINK_ON_DONE)
