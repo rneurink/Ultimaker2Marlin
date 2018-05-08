@@ -1,3 +1,10 @@
+Ultimaker 2 Marlin edited by [rneurink](https://github.com/rneurink)
+ * Added support to be able to select an sd file from the printer menu
+ * Added support to be able to abort a print from the printer and it will register in octoprint
+ * Added a hex file for easy uploading (can be done through Cura)
+
+NOTE: This is build for the ultimaker 2 with 1 extruder. Make sure to select the correct settings if you build this yourself.
+
 ==========================
 Marlin 3D Printer Firmware
 ==========================
